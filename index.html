@@ -3,14 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Mi Dashboard</title>
-<link rel="manifest" href="./manifest.json">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Dashboard">
-<meta name="theme-color" content="#07070A">
-<link rel="apple-touch-icon" href="./icon-192.png">
+<title>Dashboard</title>
 <style>
 :root{
   --bg:#07070A;--s1:rgba(255,255,255,.042);--s2:rgba(255,255,255,.072);
@@ -336,6 +329,97 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 /* ── OVERLAY ── */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:250;opacity:0;pointer-events:none;transition:opacity .3s}
 .overlay.on{opacity:1;pointer-events:all}
+
+.onb-screen{display:none;flex-direction:column;padding:max(env(safe-area-inset-top,32px),32px) 24px max(env(safe-area-inset-bottom,32px),32px);min-height:100dvh;animation:fadeIn .3s ease;position:relative;z-index:1}
+.onb-screen.active{display:flex}
+.onb-progress{display:flex;gap:6px;margin-bottom:32px}
+.onb-dot{height:4px;border-radius:2px;background:rgba(255,255,255,.15);transition:all .3s;flex:1}
+.onb-dot.active{background:#9464E8;flex:3}.onb-dot.done{background:#9464E8}
+.onb-hero{font-size:52px;text-align:center;margin-bottom:12px}
+.onb-title{font-size:24px;font-weight:900;letter-spacing:-.03em;text-align:center;margin-bottom:6px}
+.onb-sub{font-size:14px;color:#A8A69F;text-align:center;margin-bottom:24px;line-height:1.5}
+.onb-input{width:100%;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.1);border-radius:14px;padding:14px 16px;font-size:16px;font-family:-apple-system,sans-serif;color:#F5F4F0;outline:none;margin-bottom:12px;transition:border-color .2s,background .2s}
+.onb-input:focus{border-color:rgba(148,100,232,.6);background:rgba(148,100,232,.1)}
+.onb-input::placeholder{color:#5C5A54}
+.onb-row{display:flex;gap:10px;margin-bottom:12px}.onb-row .onb-input{margin-bottom:0}
+.goal-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.goal-card{background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.08);border-radius:14px;padding:16px;text-align:center;cursor:pointer;transition:all .2s}
+.goal-card:hover{background:rgba(255,255,255,.09)}.goal-card.sel{background:rgba(148,100,232,.15);border-color:rgba(148,100,232,.4)}
+.goal-card-icon{font-size:26px;margin-bottom:8px}
+.goal-card-title{font-size:13px;font-weight:700;margin-bottom:3px}
+.goal-card-sub{font-size:10px;color:#5C5A54;font-family:monospace}
+.activity-list{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.activity-item{background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.08);border-radius:14px;padding:14px 16px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:12px}
+.activity-item:hover{background:rgba(255,255,255,.09)}.activity-item.sel{background:rgba(148,100,232,.15);border-color:rgba(148,100,232,.4)}
+.activity-icon{font-size:20px;flex-shrink:0}
+.activity-name{font-size:14px;font-weight:700}.activity-desc{font-size:11px;color:#5C5A54;margin-top:2px}
+.macros-preview{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px;margin-bottom:20px}
+.macros-big{display:flex;align-items:baseline;gap:8px;margin-bottom:14px}
+.macros-kcal{font-size:42px;font-weight:900;font-family:monospace;letter-spacing:-.04em}
+.macros-unit{font-size:16px;color:#A8A69F}
+.macros-row{display:flex;gap:8px}
+.macro-col{flex:1;text-align:center}
+.macro-col-val{font-size:20px;font-weight:900;font-family:monospace;letter-spacing:-.02em}
+.macro-col-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#5C5A54;margin-top:2px}
+.onb-btn{width:100%;border-radius:14px;padding:16px;font-size:16px;font-weight:800;border:none;cursor:pointer;background:linear-gradient(135deg,#9464E8,#4FC3F7);color:#fff;box-shadow:0 8px 24px rgba(148,100,232,.35);transition:all .2s;margin-top:auto}
+.onb-btn:hover{transform:translateY(-1px)}.onb-btn:disabled{opacity:.5;cursor:default;transform:none}
+.onb-back{background:none;border:none;color:#5C5A54;font-size:13px;font-weight:600;cursor:pointer;text-align:center;padding:12px;width:100%;font-family:-apple-system,sans-serif}
+.onb-back:hover{color:#A8A69F}
+.routine-day-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:14px;margin-bottom:10px}
+.rdc-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.rdc-name{font-size:14px;font-weight:800}
+.rdc-tag{font-size:9px;font-family:monospace;color:#5C5A54;letter-spacing:.06em;margin-top:2px}
+.rdc-actions{display:flex;gap:8px}
+.rdc-btn{background:none;border:none;font-size:16px;cursor:pointer;color:#5C5A54;padding:2px}.rdc-btn:hover{color:#F5F4F0}
+.ex-chips{display:flex;flex-wrap:wrap;gap:5px}
+.ex-chip-pill{background:rgba(93,212,154,.12);border:1px solid rgba(93,212,154,.28);border-radius:100px;padding:3px 10px;font-size:10px;font-weight:700;color:#5DD49A}
+.ex-chip-add{background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.1);border-radius:100px;padding:3px 10px;font-size:10px;color:#5C5A54;cursor:pointer;transition:all .15s}
+.ex-chip-add:hover{border-color:rgba(93,212,154,.3);color:#5DD49A;background:rgba(93,212,154,.08)}
+.add-day-btn{width:100%;background:rgba(255,255,255,.04);border:1.5px dashed rgba(255,255,255,.1);border-radius:14px;padding:14px;font-size:13px;font-weight:700;color:#A8A69F;cursor:pointer;margin-bottom:10px;transition:all .2s;text-align:center}
+.add-day-btn:hover{border-color:rgba(93,212,154,.3);color:#5DD49A;background:rgba(93,212,154,.08)}
+.daily-strip{display:flex;gap:8px;margin-top:10px;margin-bottom:10px}
+.strip-card{flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:11px 13px;display:flex;align-items:center;gap:9px;cursor:pointer;transition:all .2s}
+.strip-card:hover{background:rgba(255,255,255,.07)}.strip-card.done{border-color:rgba(93,212,154,.3);background:rgba(93,212,154,.1)}
+.strip-icon{font-size:20px;flex-shrink:0}.strip-lbl{font-size:12px;font-weight:700}
+.strip-sub{font-size:9px;font-family:monospace;color:#5C5A54;margin-top:1px}
+.strip-hbar{height:3px;background:rgba(255,255,255,.07);border-radius:2px;margin-top:4px;overflow:hidden}
+.strip-hbar-fill{height:100%;background:#4FC3F7;border-radius:2px;transition:width .5s}
+.macro-mini-row{display:flex;gap:6px;margin-top:12px}
+.macro-mini{flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:8px 10px}
+.mm-val{font-size:14px;font-weight:900;font-family:monospace;letter-spacing:-.02em}
+.mm-lbl{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#5C5A54;margin-top:1px}
+.mm-bar{height:3px;background:rgba(255,255,255,.07);border-radius:2px;margin-top:4px;overflow:hidden}
+.mm-bar-fill{height:100%;border-radius:2px;transition:width .5s}
+.avatar-btn{width:36px;height:36px;border-radius:18px;background:rgba(148,100,232,.15);border:1.5px solid rgba(148,100,232,.3);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#9464E8;cursor:pointer;flex-shrink:0}
+.icon-btn{background:none;border:none;font-size:18px;cursor:pointer;color:#5C5A54;padding:2px;line-height:1}
+.notif-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.07)}.notif-row:last-child{border-bottom:none}
+.notif-lbl{font-size:13px;font-weight:600}.notif-sub{font-size:10px;color:#5C5A54;margin-top:2px}
+.time-in{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:7px;padding:5px 9px;color:#F5F4F0;font-size:13px;font-weight:700;font-family:monospace;outline:none;cursor:pointer}
+.toggle{width:44px;height:26px;border-radius:13px;background:rgba(255,255,255,.15);border:none;cursor:pointer;position:relative;transition:background .2s;flex-shrink:0}.toggle.on{background:#5DD49A}
+.toggle::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 4px rgba(0,0,0,.25)}.toggle.on::after{transform:translateX(18px)}
+.setting-input{width:80px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:7px;padding:5px 9px;color:#F5F4F0;font-size:13px;font-weight:700;font-family:monospace;outline:none;text-align:right}
+.profile-avatar-lg{width:68px;height:68px;border-radius:34px;background:rgba(148,100,232,.15);border:2px solid rgba(148,100,232,.3);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;color:#9464E8;flex-shrink:0}
+.profile-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.profile-stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:12px;text-align:center}
+.profile-stat-val{font-size:20px;font-weight:900;font-family:monospace;letter-spacing:-.02em}
+.profile-stat-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#5C5A54;margin-top:2px}
+.hyd-hero{text-align:center;padding:20px 0 22px}
+.hyd-num{font-size:52px;font-weight:900;letter-spacing:-.04em;font-family:monospace;line-height:1;color:#4FC3F7}
+.hyd-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:#5C5A54;margin-top:4px}
+.hyd-goal{font-size:12px;font-family:monospace;color:#5C5A54;margin-top:2px}
+.hyd-bar-wrap{height:8px;background:rgba(255,255,255,.07);border-radius:4px;margin:14px 0;overflow:hidden}
+.hyd-bar-fill{height:100%;border-radius:4px;background:#4FC3F7;transition:width .5s cubic-bezier(.22,1,.36,1)}
+.hyd-advice{font-size:12px;color:#A8A69F;text-align:center}
+.hyd-quick-btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.hyd-quick-btn{flex:1;min-width:52px;background:rgba(79,195,247,.12);border:1px solid rgba(79,195,247,.28);border-radius:10px;padding:9px 4px;font-size:12px;font-weight:700;color:#4FC3F7;cursor:pointer;transition:all .15s;text-align:center}
+.hyd-quick-btn:hover{transform:translateY(-1px)}
+.hyd-in-row{display:flex;gap:8px;margin-bottom:12px}
+.hyd-in{flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:11px 14px;font-size:16px;font-weight:700;font-family:monospace;color:#F5F4F0;outline:none;-moz-appearance:textfield;transition:border-color .2s}
+.hyd-in::-webkit-outer-spin-button,.hyd-in::-webkit-inner-spin-button{-webkit-appearance:none}
+.hyd-in::placeholder{color:#5C5A54;font-size:13px;font-weight:400}.hyd-in:focus{border-color:rgba(79,195,247,.4)}
+.hyd-log-btn{background:linear-gradient(180deg,rgba(79,195,247,.18),rgba(79,195,247,.04));border:1px solid rgba(79,195,247,.28);border-radius:10px;padding:11px 16px;font-size:13px;font-weight:700;color:#4FC3F7;cursor:pointer;white-space:nowrap;transition:all .15s}
+.hyd-log-btn:hover{transform:translateY(-1px)}
+
 </style>
 </head>
 <body>
@@ -369,6 +453,21 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
       <div class="ring-remain" id="ringRemain"></div>
     </div>
   </div>
+  <div class="macro-mini-row" id="homeMacroRow"></div>
+  <div class="daily-strip">
+    <div class="strip-card" id="creatineCard" onclick="toggleCreatine()">
+      <div class="strip-icon">💊</div>
+      <div style="flex:1"><div class="strip-lbl">Creatina</div><div class="strip-sub" id="creatineSub">Toca para marcar</div></div>
+    </div>
+    <div class="strip-card" id="hydrationCard" onclick="goTo('hydration')">
+      <div class="strip-icon">💧</div>
+      <div style="flex:1">
+        <div class="strip-lbl">Hidratacion</div>
+        <div class="strip-sub" id="hydSub">- / - L</div>
+        <div class="strip-hbar"><div class="strip-hbar-fill" id="hydHomeBar" style="width:0%"></div></div>
+      </div>
+    </div>
+  </div>
   <div class="nav-grid">
     <button class="ntile gym" onclick="goTo('gym')"><div class="ntile-icon">🏋️</div><div><div class="ntile-label">Gym</div><div class="ntile-sub" id="gymTileSub">—</div></div></button>
     <button class="ntile body" onclick="goTo('body')"><div class="ntile-icon">⚖️</div><div><div class="ntile-label">Cuerpo</div><div class="ntile-sub" id="bodyTileSub">—</div></div></button>
@@ -383,6 +482,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
   <div class="card"><div class="sec-lbl">Recuperación muscular</div><div class="muscle-grid" id="muscleGrid"></div></div>
   <div class="day-tabs" id="gymDayTabs"></div>
   <div id="gymSessionContent"></div>
+  <div class="card" style="margin-top:4px"><div class="sec-lbl" style="margin-bottom:8px">Mi rutina</div><button class="add-day-btn" onclick="goTo('routine')">Editar mi rutina personalizada</button></div>
 </div>
 
 <!-- ══ BODY ══ -->
@@ -449,7 +549,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 </div><!-- /app -->
 
 <!-- Voice FAB -->
-<button class="voice-fab" id="voiceFab" onclick="toggleVoice()" title="Habla con el dashboard">🎙️</button>
+<button class="voice-fab" id="voiceFab" style="display:none" onclick="toggleVoice()" title="Habla con el dashboard">🎙️</button>
 
 <!-- Overlay -->
 <div class="overlay" id="overlay" onclick="closeVoicePanel()"></div>
@@ -466,7 +566,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 </div>
 
 <!-- Bottom nav -->
-<nav class="bottom-nav">
+<nav class="bottom-nav" id="bottomNav" style="display:none">
   <button class="nav-btn active" data-s="home" onclick="goTo('home')"><div class="nav-btn-icon">⌂</div><div class="nav-btn-lbl">Inicio</div></button>
   <button class="nav-btn" data-s="gym" onclick="goTo('gym')"><div class="nav-btn-icon">🏋️</div><div class="nav-btn-lbl">Gym</div></button>
   <button class="nav-btn" data-s="body" onclick="goTo('body')"><div class="nav-btn-icon">⚖️</div><div class="nav-btn-lbl">Cuerpo</div></button>
@@ -1182,13 +1282,134 @@ function renderHome(){
 
 // ══ INIT ══
 renderHome();updateRing();setInterval(updateRing,60000);
-
-// PWA Service Worker
-if('serviceWorker' in navigator){
-  window.addEventListener('load',()=>{
-    navigator.serviceWorker.register('./sw.js').catch(()=>{});
-  });
-}
 </script>
+<!-- ONBOARDING -->
+<div class="onb-screen active" id="onb-0">
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1">
+    <div style="text-align:center;margin-bottom:48px">
+      <img src="./icon-192.png" style="width:90px;height:90px;border-radius:22px;margin-bottom:20px;box-shadow:0 12px 40px rgba(79,195,247,.4)">
+      <div style="font-size:32px;font-weight:900;letter-spacing:-.04em;margin-bottom:8px">Dashboard</div>
+      <div style="font-size:16px;color:#A8A69F;line-height:1.5">Tu herramienta personal de<br>gym, cuerpo, comida y sueño.</div>
+    </div>
+    <button class="onb-btn" onclick="nextOnb(1)">Empezar →</button>
+    <div style="text-align:center;margin-top:16px;font-size:11px;color:#5C5A54">Tus datos se guardan solo en tu movil</div>
+  </div>
+</div>
+<div class="onb-screen" id="onb-1">
+  <div style="position:relative;z-index:1;flex:1;display:flex;flex-direction:column">
+    <div class="onb-progress" id="onbProg1"></div>
+    <div class="onb-hero">👤</div>
+    <div class="onb-title">Como te llamas?</div>
+    <div class="onb-sub">Personalizamos el dashboard para ti</div>
+    <input class="onb-input" id="onbName" placeholder="Tu nombre" autocomplete="given-name" oninput="validateOnb1()">
+    <div class="onb-row">
+      <input class="onb-input" id="onbAge" type="number" placeholder="Edad" min="14" max="80" oninput="validateOnb1()">
+      <select class="onb-input" id="onbSex" onchange="validateOnb1()" style="cursor:pointer">
+        <option value="">Sexo</option><option value="M">Hombre</option><option value="F">Mujer</option>
+      </select>
+    </div>
+    <div class="onb-row">
+      <input class="onb-input" id="onbHeight" type="number" placeholder="Altura cm" min="140" max="220" oninput="validateOnb1()">
+      <input class="onb-input" id="onbWeight" type="number" placeholder="Peso kg" step="0.1" min="40" max="200" oninput="validateOnb1()">
+    </div>
+    <button class="onb-btn" id="onbBtn1" onclick="nextOnb(2)" disabled>Continuar</button>
+  </div>
+</div>
+<div class="onb-screen" id="onb-2">
+  <div style="position:relative;z-index:1;flex:1;display:flex;flex-direction:column">
+    <div class="onb-progress" id="onbProg2"></div>
+    <div class="onb-hero">🎯</div>
+    <div class="onb-title">Cual es tu objetivo?</div>
+    <div class="onb-sub">Calculamos tus macros exactos</div>
+    <div class="goal-grid">
+      <div class="goal-card" data-goal="muscle" onclick="selectGoal(this)"><div class="goal-card-icon">💪</div><div class="goal-card-title">Ganar musculo</div><div class="goal-card-sub">Superavit +300kcal</div></div>
+      <div class="goal-card" data-goal="fat_loss" onclick="selectGoal(this)"><div class="goal-card-icon">🔥</div><div class="goal-card-title">Perder grasa</div><div class="goal-card-sub">Deficit -400kcal</div></div>
+      <div class="goal-card" data-goal="recomp" onclick="selectGoal(this)"><div class="goal-card-icon">⚖️</div><div class="goal-card-title">Recomposicion</div><div class="goal-card-sub">Mantenimiento</div></div>
+      <div class="goal-card" data-goal="maintain" onclick="selectGoal(this)"><div class="goal-card-icon">🧘</div><div class="goal-card-title">Mantener</div><div class="goal-card-sub">Sin cambios</div></div>
+    </div>
+    <button class="onb-btn" id="onbBtn2" onclick="nextOnb(3)" disabled>Continuar</button>
+    <button class="onb-back" onclick="nextOnb(1)">Atras</button>
+  </div>
+</div>
+<div class="onb-screen" id="onb-3">
+  <div style="position:relative;z-index:1;flex:1;display:flex;flex-direction:column">
+    <div class="onb-progress" id="onbProg3"></div>
+    <div class="onb-hero">⚡</div>
+    <div class="onb-title">Nivel de actividad</div>
+    <div class="onb-sub">Cuanto te mueves en un dia normal</div>
+    <div class="activity-list">
+      <div class="activity-item" data-activity="sedentary" onclick="selectActivity(this)"><div class="activity-icon">🛋️</div><div><div class="activity-name">Sedentario</div><div class="activity-desc">Trabajo de oficina</div></div></div>
+      <div class="activity-item" data-activity="light" onclick="selectActivity(this)"><div class="activity-icon">🚶</div><div><div class="activity-name">Ligeramente activo</div><div class="activity-desc">1-3 dias de ejercicio</div></div></div>
+      <div class="activity-item" data-activity="moderate" onclick="selectActivity(this)"><div class="activity-icon">🏃</div><div><div class="activity-name">Moderadamente activo</div><div class="activity-desc">3-5 dias de ejercicio</div></div></div>
+      <div class="activity-item" data-activity="active" onclick="selectActivity(this)"><div class="activity-icon">🔥</div><div><div class="activity-name">Muy activo</div><div class="activity-desc">6-7 dias intensos</div></div></div>
+    </div>
+    <button class="onb-btn" id="onbBtn3" onclick="nextOnb(4)" disabled>Continuar</button>
+    <button class="onb-back" onclick="nextOnb(2)">Atras</button>
+  </div>
+</div>
+<div class="onb-screen" id="onb-4">
+  <div style="position:relative;z-index:1;flex:1;display:flex;flex-direction:column">
+    <div class="onb-progress" id="onbProg4"></div>
+    <div class="onb-hero">📊</div>
+    <div class="onb-title">Tus macros calculados</div>
+    <div class="onb-sub">Basados en tu perfil y objetivo</div>
+    <div class="macros-preview" id="macroPreview"></div>
+    <div style="font-size:12px;color:#5C5A54;line-height:1.5;margin-bottom:20px;text-align:center">Puedes ajustar en ajustes en cualquier momento</div>
+    <button class="onb-btn" onclick="finishOnboarding()">Empezar!</button>
+    <button class="onb-back" onclick="nextOnb(3)">Atras</button>
+  </div>
+</div>
+
+
+<!-- Extra screens -->
+<div class="screen" id="screen-routine">
+  <div class="topbar"><button class="back-btn" onclick="goTo('gym')">Gym</button><div class="tb-title">MI RUTINA</div></div>
+  <div id="routineContent"></div>
+</div>
+<div class="screen" id="screen-hydration">
+  <div class="topbar"><button class="back-btn" onclick="goTo('home')">Inicio</button><div class="tb-title">HIDRATACION</div></div>
+  <div class="card"><div class="hyd-hero"><div class="hyd-num" id="hydNum">0.0</div><div class="hyd-lbl">litros hoy</div><div class="hyd-goal" id="hydGoalLbl">objetivo: - L</div></div><div class="hyd-bar-wrap"><div class="hyd-bar-fill" id="hydBar" style="width:0%"></div></div><div class="hyd-advice" id="hydAdvice">-</div></div>
+  <div class="card"><div class="sec-lbl" style="margin-bottom:10px">Anadir</div><div class="hyd-quick-btns" id="hydQuickBtns"></div><div class="hyd-in-row"><input class="hyd-in" id="hydCustomIn" type="number" step="0.1" min="0.1" max="2" placeholder="litros"><button class="hyd-log-btn" onclick="logWater()">+ Anadir</button></div></div>
+  <div class="card"><div class="sec-lbl" style="margin-bottom:10px">Hoy</div><div id="hydLog"></div></div>
+</div>
+<div class="screen" id="screen-profile">
+  <div class="topbar"><button class="back-btn" onclick="goTo('home')">Inicio</button><div class="tb-title">PERFIL</div></div>
+  <div class="card">
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px">
+      <div class="profile-avatar-lg" id="profileAvatar">?</div>
+      <div><div style="font-size:22px;font-weight:900;letter-spacing:-.03em;margin-bottom:4px" id="profileName">-</div><div style="display:inline-block;background:rgba(148,100,232,.15);border:1px solid rgba(148,100,232,.3);border-radius:100px;padding:3px 10px;font-size:10px;font-weight:700;color:#9464E8" id="profileGoalTag">-</div></div>
+    </div>
+    <div class="profile-stats" id="profileStats"></div>
+    <button onclick="goTo('settings')" style="width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:12px;font-size:13px;font-weight:700;cursor:pointer;text-align:left">Editar perfil y ajustes</button>
+  </div>
+  <div class="card"><div class="sec-lbl" style="margin-bottom:10px">Mis macros objetivo</div><div id="profileMacros"></div></div>
+  <div class="card"><div class="sec-lbl" style="margin-bottom:10px">Datos</div>
+    <button onclick="exportData()" style="width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:12px;font-size:13px;font-weight:700;cursor:pointer;margin-bottom:8px;text-align:left">Exportar mis datos</button>
+    <button onclick="if(confirm('Resetear TODO?')){localStorage.clear();location.reload()}" style="width:100%;background:rgba(232,100,90,.1);border:1px solid rgba(232,100,90,.25);border-radius:10px;padding:12px;font-size:13px;font-weight:700;color:#E8645A;cursor:pointer;text-align:left">Resetear app</button>
+  </div>
+</div>
+<div class="screen" id="screen-settings">
+  <div class="topbar"><button class="back-btn" onclick="goTo('home')">Inicio</button><div class="tb-title">AJUSTES</div></div>
+  <div class="card"><div class="sec-lbl" style="margin-bottom:4px">Apariencia</div>
+    <div class="notif-row"><div><div class="notif-lbl">Modo oscuro / claro</div><div class="notif-sub" id="themeLabel">Siguiendo el sistema</div></div><button class="toggle" id="themeToggle" onclick="cycleTheme()"></button></div>
+  </div>
+  <div class="card"><div class="sec-lbl" style="margin-bottom:4px">Notificaciones</div>
+    <div class="notif-row"><div><div class="notif-lbl">Creatina</div><div class="notif-sub">Recordatorio diario</div></div><div style="display:flex;align-items:center;gap:10px"><input type="time" id="creatineTime" class="time-in" value="08:30" onchange="saveSettings()"><button class="toggle on" id="creatineToggle" onclick="toggleSetting('creatine')"></button></div></div>
+    <div class="notif-row"><div><div class="notif-lbl">Hidratacion</div></div><select id="hydInterval" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:7px;padding:5px 9px;color:#F5F4F0;font-size:12px;outline:none" onchange="saveSettings()"><option value="0">Off</option><option value="2">Cada 2h</option><option value="3" selected>Cada 3h</option><option value="4">Cada 4h</option></select></div>
+  </div>
+  <div class="card"><div class="sec-lbl" style="margin-bottom:4px">Objetivos</div>
+    <div class="notif-row"><div><div class="notif-lbl">Calorias</div></div><input type="number" id="goalKcal" class="setting-input" onchange="saveSettings()"></div>
+    <div class="notif-row"><div><div class="notif-lbl">Proteina g</div></div><input type="number" id="goalProt" class="setting-input" onchange="saveSettings()"></div>
+    <div class="notif-row"><div><div class="notif-lbl">Carbos g</div></div><input type="number" id="goalCarb" class="setting-input" onchange="saveSettings()"></div>
+    <div class="notif-row"><div><div class="notif-lbl">Grasa g</div></div><input type="number" id="goalFat" class="setting-input" onchange="saveSettings()"></div>
+    <div class="notif-row"><div><div class="notif-lbl">Agua L</div></div><input type="number" id="goalWater" step="0.5" class="setting-input" onchange="saveSettings()"></div>
+  </div>
+  <div class="card"><div class="sec-lbl" style="margin-bottom:4px">Editar perfil</div>
+    <div class="notif-row"><div><div class="notif-lbl">Nombre</div></div><input type="text" id="settingName" class="setting-input" style="width:120px" onchange="saveSettings()"></div>
+    <div class="notif-row"><div><div class="notif-lbl">Peso kg</div></div><input type="number" id="settingWeight" step="0.1" class="setting-input" onchange="saveSettings()"></div>
+    <div class="notif-row"><div><div class="notif-lbl">Altura cm</div></div><input type="number" id="settingHeight" class="setting-input" onchange="saveSettings()"></div>
+  </div>
+</div>
+
 </body>
 </html>
