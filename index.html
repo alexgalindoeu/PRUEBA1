@@ -21,8 +21,6 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 #app{position:relative;z-index:1;max-width:480px;margin:0 auto;min-height:100dvh}
 .screen{display:none;flex-direction:column;padding:max(env(safe-area-inset-top,24px),24px) 16px calc(max(env(safe-area-inset-bottom,8px),8px)+72px);min-height:100dvh;animation:fadeUp .2s ease both}
 .screen.active{display:flex}
-.onb{display:none;flex-direction:column;padding:max(env(safe-area-inset-top,40px),40px) 24px max(env(safe-area-inset-bottom,32px),32px);min-height:100dvh;animation:fadeUp .25s ease both}
-.onb.active{display:flex}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .card{background:var(--bg1);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:12px;transition:background .25s,border-color .25s}
 .label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);margin-bottom:12px}
@@ -250,39 +248,6 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 .sleep-in::placeholder{color:var(--t3);font-size:13px;font-weight:400}.sleep-in:focus{border-color:var(--purple-border)}
 .btn-purple{background:var(--purple-bg);border:1px solid var(--purple-border);border-radius:var(--rs);padding:11px 16px;font-size:13px;font-weight:700;color:var(--purple);cursor:pointer;white-space:nowrap;transition:all .15s;font-family:var(--sans)}
 .btn-purple:hover{transform:translateY(-1px)}
-.onb-dots{display:flex;gap:6px;margin-bottom:36px}
-.onb-dot{height:4px;border-radius:2px;background:var(--border2);transition:all .3s;flex:1}
-.onb-dot.done{background:var(--purple)}.onb-dot.cur{background:var(--purple);flex:3}
-.onb-title{font-size:26px;font-weight:900;letter-spacing:-.04em;text-align:center;margin-bottom:6px}
-.onb-sub{font-size:15px;color:var(--t2);text-align:center;margin-bottom:28px;line-height:1.5}
-.onb-in{width:100%;background:var(--bg1);border:1.5px solid var(--border);border-radius:var(--r);padding:15px 16px;font-size:16px;font-family:var(--sans);color:var(--t1);outline:none;margin-bottom:12px;transition:all .2s}
-.onb-in:focus{border-color:var(--purple-border);background:var(--purple-bg)}
-.onb-in::placeholder{color:var(--t3)}
-.onb-row{display:flex;gap:10px;margin-bottom:12px}.onb-row .onb-in{margin-bottom:0}
-.goal-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px}
-.goal-card{background:var(--bg1);border:1.5px solid var(--border);border-radius:var(--r);padding:18px 14px;text-align:center;cursor:pointer;transition:all .2s}
-.goal-card:hover{background:var(--bg2)}.goal-card.sel{background:var(--purple-bg);border-color:var(--purple-border)}
-.goal-card-ico{font-size:28px;margin-bottom:10px}
-.goal-card-name{font-size:13px;font-weight:700;margin-bottom:3px}
-.goal-card-desc{font-size:10px;color:var(--t3);font-family:var(--mono)}
-.activity-list{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
-.activity-item{background:var(--bg1);border:1.5px solid var(--border);border-radius:var(--r);padding:15px 16px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:14px}
-.activity-item:hover{background:var(--bg2)}.activity-item.sel{background:var(--purple-bg);border-color:var(--purple-border)}
-.activity-ico{font-size:22px;flex-shrink:0}
-.activity-name{font-size:14px;font-weight:700;margin-bottom:2px}
-.activity-desc{font-size:11px;color:var(--t3)}
-.macros-box{background:var(--bg1);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:24px}
-.macros-big-num{font-size:44px;font-weight:900;font-family:var(--mono);letter-spacing:-.04em;line-height:1;margin-bottom:4px}
-.macros-unit{font-size:16px;color:var(--t2);margin-bottom:16px}
-.macros-grid{display:flex;gap:10px}
-.macro-item{flex:1;text-align:center}
-.macro-item-val{font-size:22px;font-weight:900;font-family:var(--mono);letter-spacing:-.02em}
-.macro-item-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--t3);margin-top:3px}
-.onb-btn{width:100%;border-radius:var(--r);padding:17px;font-size:16px;font-weight:800;border:none;cursor:pointer;background:linear-gradient(135deg,var(--purple),var(--blue));color:#fff;box-shadow:0 8px 28px rgba(155,111,245,.35);transition:all .2s;margin-top:auto;font-family:var(--sans)}
-.onb-btn:hover{transform:translateY(-1px);box-shadow:0 12px 36px rgba(155,111,245,.45)}
-.onb-btn:disabled{opacity:.45;cursor:default;transform:none;box-shadow:none}
-.onb-skip{background:none;border:none;color:var(--t3);font-size:13px;font-weight:600;cursor:pointer;text-align:center;padding:14px;width:100%;font-family:var(--sans);margin-top:6px}
-.onb-skip:hover{color:var(--t2)}
 .grade-big{font-size:56px;font-weight:900;line-height:1;text-align:center;margin:6px 0 4px}
 .grade-lbl{font-size:13px;color:var(--t2);text-align:center;margin-bottom:4px}
 .review-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -342,88 +307,11 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 .empty-txt{font-size:12px;color:var(--t3);font-style:italic;padding:8px 0}
 .btn-danger{width:100%;background:var(--red-bg);border:1px solid var(--red-border);border-radius:var(--rs);padding:12px;font-size:13px;font-weight:700;color:var(--red);cursor:pointer;text-align:left;font-family:var(--sans)}
 .btn-neutral{width:100%;background:var(--bg1);border:1px solid var(--border);border-radius:var(--rs);padding:12px;font-size:13px;font-weight:700;color:var(--t1);cursor:pointer;margin-bottom:8px;text-align:left;font-family:var(--sans)}
-select.onb-in{cursor:pointer}
-select.setting-inp-sel{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:5px 9px;color:var(--t1);font-size:12px;outline:none;font-family:var(--sans)}
+selectselect.setting-inp-sel{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:5px 9px;color:var(--t1);font-size:12px;outline:none;font-family:var(--sans)}
 </style>
 </head>
 <body>
 <div id="app">
-<!-- ONBOARDING -->
-<div class="onb active" id="onb-0">
-  <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
-    <div style="text-align:center;margin-bottom:52px">
-      <img src="./icon-192.png" style="width:88px;height:88px;border-radius:22px;margin-bottom:22px;box-shadow:0 14px 40px rgba(66,196,245,.4)">
-      <div style="font-size:34px;font-weight:900;letter-spacing:-.04em;margin-bottom:10px">Dashboard</div>
-      <div style="font-size:16px;color:var(--t2);line-height:1.6">Tu herramienta de gym,<br>cuerpo, comida y sueño.</div>
-    </div>
-    <button class="onb-btn" onclick="nextOnb(1)">Empezar →</button>
-    <div style="text-align:center;margin-top:14px;font-size:11px;color:var(--t3)">Tus datos solo se guardan en tu móvil</div>
-  </div>
-</div>
-<div class="onb" id="onb-1">
-  <div class="onb-dots" id="dots1"></div>
-  <div style="flex:1;display:flex;flex-direction:column">
-    <div style="font-size:52px;text-align:center;margin-bottom:14px">👤</div>
-    <div class="onb-title">¿Cómo te llamas?</div>
-    <div class="onb-sub">Lo usamos para personalizar el dashboard</div>
-    <input class="onb-in" id="oName" placeholder="Tu nombre" autocomplete="given-name" oninput="v1()">
-    <div class="onb-row">
-      <input class="onb-in" id="oAge" type="number" placeholder="Edad" min="14" max="80" oninput="v1()">
-      <select class="onb-in" id="oSex" onchange="v1()"><option value="">Sexo</option><option value="M">Hombre</option><option value="F">Mujer</option></select>
-    </div>
-    <div class="onb-row">
-      <input class="onb-in" id="oH" type="number" placeholder="Altura (cm)" min="140" max="220" oninput="v1()">
-      <input class="onb-in" id="oW" type="number" placeholder="Peso (kg)" step="0.1" min="40" max="200" oninput="v1()">
-    </div>
-    <button class="onb-btn" id="btn1" onclick="nextOnb(2)" disabled>Continuar →</button>
-    <button class="onb-skip" onclick="nextOnb(0)">← Volver</button>
-  </div>
-</div>
-<div class="onb" id="onb-2">
-  <div class="onb-dots" id="dots2"></div>
-  <div style="flex:1;display:flex;flex-direction:column">
-    <div style="font-size:52px;text-align:center;margin-bottom:14px">🎯</div>
-    <div class="onb-title">¿Cuál es tu objetivo?</div>
-    <div class="onb-sub">Calculamos tus macros exactos</div>
-    <div class="goal-grid">
-      <div class="goal-card" data-g="muscle" onclick="selGoal(this)"><div class="goal-card-ico">💪</div><div class="goal-card-name">Ganar músculo</div><div class="goal-card-desc">+300 kcal/día</div></div>
-      <div class="goal-card" data-g="fat_loss" onclick="selGoal(this)"><div class="goal-card-ico">🔥</div><div class="goal-card-name">Perder grasa</div><div class="goal-card-desc">-400 kcal/día</div></div>
-      <div class="goal-card" data-g="recomp" onclick="selGoal(this)"><div class="goal-card-ico">⚖️</div><div class="goal-card-name">Recomposición</div><div class="goal-card-desc">Mantenimiento</div></div>
-      <div class="goal-card" data-g="maintain" onclick="selGoal(this)"><div class="goal-card-ico">🧘</div><div class="goal-card-name">Mantener</div><div class="goal-card-desc">Sin cambios</div></div>
-    </div>
-    <button class="onb-btn" id="btn2" onclick="nextOnb(3)" disabled>Continuar →</button>
-    <button class="onb-skip" onclick="nextOnb(1)">← Volver</button>
-  </div>
-</div>
-<div class="onb" id="onb-3">
-  <div class="onb-dots" id="dots3"></div>
-  <div style="flex:1;display:flex;flex-direction:column">
-    <div style="font-size:52px;text-align:center;margin-bottom:14px">⚡</div>
-    <div class="onb-title">Nivel de actividad</div>
-    <div class="onb-sub">Cuánto te mueves en un día normal</div>
-    <div class="activity-list">
-      <div class="activity-item" data-a="sedentary" onclick="selActivity(this)"><div class="activity-ico">🛋️</div><div><div class="activity-name">Sedentario</div><div class="activity-desc">Trabajo de oficina, poco movimiento</div></div></div>
-      <div class="activity-item" data-a="light" onclick="selActivity(this)"><div class="activity-ico">🚶</div><div><div class="activity-name">Ligeramente activo</div><div class="activity-desc">1-3 días de ejercicio</div></div></div>
-      <div class="activity-item" data-a="moderate" onclick="selActivity(this)"><div class="activity-ico">🏃</div><div><div class="activity-name">Moderadamente activo</div><div class="activity-desc">3-5 días de ejercicio</div></div></div>
-      <div class="activity-item" data-a="active" onclick="selActivity(this)"><div class="activity-ico">🔥</div><div><div class="activity-name">Muy activo</div><div class="activity-desc">6-7 días intensos</div></div></div>
-    </div>
-    <button class="onb-btn" id="btn3" onclick="nextOnb(4)" disabled>Continuar →</button>
-    <button class="onb-skip" onclick="nextOnb(2)">← Volver</button>
-  </div>
-</div>
-<div class="onb" id="onb-4">
-  <div class="onb-dots" id="dots4"></div>
-  <div style="flex:1;display:flex;flex-direction:column">
-    <div style="font-size:52px;text-align:center;margin-bottom:14px">📊</div>
-    <div class="onb-title">Tus macros calculados</div>
-    <div class="onb-sub">Ajustados a tu perfil y objetivo</div>
-    <div class="macros-box" id="macrosBox"></div>
-    <div style="font-size:12px;color:var(--t3);text-align:center;margin-bottom:24px">Puedes cambiarlos en Ajustes cuando quieras</div>
-    <button class="onb-btn" onclick="finishOnb()">¡Empezar! →</button>
-    <button class="onb-skip" onclick="nextOnb(3)">← Volver</button>
-  </div>
-</div>
-
 <!-- HOME -->
 <div class="screen" id="screen-home">
   <div class="home-top">
@@ -639,6 +527,17 @@ select.setting-inp-sel{background:var(--bg2);border:1px solid var(--border);bord
   <button class="nav-btn" data-s="sleep" onclick="nav('sleep')"><div class="nav-btn-ico">😴</div><div class="nav-btn-lbl">Sueño</div></button>
 </nav>
 <script>
+function saveName(){
+  var inp=document.getElementById('nameInput');
+  var name=(inp&&inp.value||'').trim();
+  if(!name)return;
+  var p=getProfile();p.name=name;p.completedAt=Date.now();
+  ss('profile',p);
+  var overlay=document.getElementById('namePrompt');
+  if(overlay)overlay.remove();
+  renderHome();
+}
+
 'use strict';
 // ── STORAGE ──────────────────────────────────────────────────────────
 const sg=k=>{try{return JSON.parse(localStorage.getItem(k))}catch{return null}};
@@ -744,24 +643,15 @@ function v1(){
   if(btn)btn.disabled=!(n&&a>10&&s&&h>100&&w>30);
 }
 function selGoal(el){
-  document.querySelectorAll('.goal-card').forEach(c=>c.classList.remove('sel'));
-  el.classList.add('sel');
-  const b=document.getElementById('btn2');if(b)b.disabled=false;
-}
-function selActivity(el){
-  document.querySelectorAll('.activity-item').forEach(c=>c.classList.remove('sel'));
-  el.classList.add('sel');
-  const b=document.getElementById('btn3');if(b)b.disabled=false;
-}
-function getTempP(){
+  document.querySelectorAll('function getTempP(){
   return{
     name:((document.getElementById('oName')||{}).value||'').trim()||'',
     age:+(document.getElementById('oAge')||{}).value||0,
     sex:(document.getElementById('oSex')||{}).value||'M',
     height:+(document.getElementById('oH')||{}).value||0,
     weight:+(document.getElementById('oW')||{}).value||0,
-    goal:(document.querySelector('.goal-card.sel')||{dataset:{}}).dataset.g||'muscle',
-    activity:(document.querySelector('.activity-item.sel')||{dataset:{}}).dataset.a||'moderate',
+    goal:(document.querySelector('}).dataset.g||'muscle',
+    activity:(document.querySelector('}).dataset.a||'moderate',
   };
 }
 function renderMacrosBox(){
@@ -830,6 +720,19 @@ function updateRing(){
 function renderHome(){
   updateRing();
   const p=getProfile();const s=getSettings();
+  // If no name yet, show name prompt overlay
+  if(!p.name){
+    var existing=document.getElementById('namePrompt');
+    if(!existing){
+      var overlay=document.createElement('div');
+      overlay.id='namePrompt';
+      overlay.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:500;display:flex;align-items:center;justify-content:center;padding:24px';
+      overlay.innerHTML='<div style="background:#13131A;border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:32px 24px;width:100%;max-width:340px;text-align:center"><div style="font-size:44px;margin-bottom:16px">👋</div><div style="font-size:22px;font-weight:800;letter-spacing:-.03em;margin-bottom:8px">¿Cómo te llamas?</div><div style="font-size:14px;color:#9B98A8;margin-bottom:24px;line-height:1.5">Para personalizar el dashboard</div><input id="nameInput" type="text" placeholder="Tu nombre" autocomplete="given-name" style="width:100%;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);border-radius:12px;padding:14px 16px;font-size:16px;color:#F0EEF5;outline:none;margin-bottom:12px;font-family:inherit;text-align:center"><br><button onclick="saveName()" style="width:100%;background:linear-gradient(135deg,#9B6FF5,#42C4F5);border:none;border-radius:12px;padding:15px;font-size:15px;font-weight:800;color:#fff;cursor:pointer;font-family:inherit">Entrar →</button></div>';
+      document.body.appendChild(overlay);
+      setTimeout(function(){var inp=document.getElementById('nameInput');if(inp){inp.focus();inp.addEventListener('keydown',function(e){if(e.key==='Enter')saveName()});}},100);
+    }
+    return;
+  }
   const av=document.getElementById('homeAvatar');if(av)av.textContent=p.name?p.name.slice(0,2).toUpperCase():'?';
   const food=calcFoodTotals(getFoodLog(today()));
   const row=document.getElementById('macroRow');
@@ -1237,10 +1140,14 @@ setInterval(checkNotifs,60000);
 
 // ── START ─────────────────────────────────────────────────────────────
 function startApp(){
-  document.querySelectorAll('.onb').forEach(s=>s.classList.remove('active'));
-  document.getElementById('nav').style.display='flex';
-  document.getElementById('fab').style.display='flex';
-  nav('home');askNotifPerm();updateRing();setInterval(updateRing,60000);
+  var navEl=document.getElementById('nav');
+  var fabEl=document.getElementById('fab');
+  if(navEl)navEl.style.display='flex';
+  if(fabEl)fabEl.style.display='flex';
+  nav('home');
+  askNotifPerm();
+  updateRing();
+  setInterval(updateRing,60000);
 }
 
 // ── INIT ──────────────────────────────────────────────────────────────
