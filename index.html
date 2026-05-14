@@ -717,14 +717,21 @@ function loadSettingsUI(){
 
 // ── ONBOARDING ────────────────────────────────────────────────────────
 function renderDots(step){
+  // Render dots for the current step (steps 1-4 have dots)
   for(let i=1;i<=4;i++){
     const el=document.getElementById('dots'+i);if(!el)continue;el.innerHTML='';
-    for(let j=1;j<=4;j++){const d=document.createElement('div');d.className='onb-dot '+(j<i?'done':j===i?'cur':'');el.appendChild(d)}
+    for(let j=1;j<=4;j++){
+      const d=document.createElement('div');
+      d.className='onb-dot '+(j<step?'done':j===step?'cur':'');
+      el.appendChild(d);
+    }
   }
 }
 function nextOnb(step){
   document.querySelectorAll('.onb').forEach(s=>s.classList.remove('active'));
-  document.getElementById('onb-'+step)?.classList.add('active');
+  const el=document.getElementById('onb-'+step);
+  if(el){el.classList.add('active');el.scrollTop=0;}
+  renderDots(step);
   if(step===4)renderMacrosBox();
 }
 function v1(){
@@ -1238,12 +1245,15 @@ function startApp(){
 
 // ── INIT ──────────────────────────────────────────────────────────────
 applyTheme(sg('theme')||'auto');
-renderDots(1);
+// Ensure only onb-0 is active initially, hide nav+fab
+document.getElementById('fab').style.display='none';
+document.getElementById('nav').style.display='none';
+document.querySelectorAll('.onb').forEach(s=>s.classList.remove('active'));
+document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
 if(sg('profile')?.completedAt){
   startApp();
 }else{
-  document.getElementById('fab').style.display='none';
-  document.getElementById('nav').style.display='none';
+  document.getElementById('onb-0').classList.add('active');
 }
 if('serviceWorker'in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}))}
 
